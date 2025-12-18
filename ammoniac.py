@@ -1,0 +1,20 @@
+import numpy as np
+T=313.15
+Tc=405.4
+Pc=1.353*10e7
+R=8.314
+w=0.256
+k=0.37464+1.54226*w-0.26992*w**2
+Tr=T/Tc
+P=7*10e5
+d=[1+k*(1-Tr**0.5)]
+A=0.45724*R**2*Tc**2/Pc
+b=0.07780*R*Tc/Pc
+a_T=A*(1+k*(1-Tr**0.5))
+u=P
+x=b*P-R*T
+y=-(3*b**2*P+2*b*R*T-a_T)
+z=-b**3*P+b**2*T*R+b*a_T
+coeffs=(u,x,y,z)
+Vm=np.roots(coeffs)
+print(Vm)
